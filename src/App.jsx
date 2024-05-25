@@ -8,10 +8,14 @@ function Seat({ number, available, selected }) {
 
 function App() {
   const [seats, setSeats] = useState(Array(80).fill({ available: true, selected: false }));
-  const [numSeatsToReserve, setNumSeatsToReserve] = useState(1);
+  const [numSeatsToReserve, setNumSeatsToReserve] = useState(null);
   const seatsAvailableCount = useRef(80);
 
   const reserveSeats = () => {
+    if(numSeatsToReserve == null || numSeatsToReserve == 0){
+      alert("Please inter any number between 1 to 7 to reserve the seat.")
+      return;
+    }
     let remainingSeatsToReserve = numSeatsToReserve;
     if(seatsAvailableCount.current < numSeatsToReserve){
       alert(`There is only ${seatsAvailableCount.current} seats left in this coach.....`)
@@ -35,14 +39,16 @@ function App() {
 
     seatsAvailableCount.current = seatsAvailableCount.current - numSeatsToReserve;
     setSeats([...seatsvalue]);
-    setNumSeatsToReserve(1);
+    setNumSeatsToReserve(null);
   };
 
   const handleChangeNumSeats = event => {
     const numSeats = parseInt(event.target.value);
-    if (!isNaN(numSeats) && numSeats > 0 && numSeats <= 7) {
-      setNumSeatsToReserve(numSeats);
+    if(numSeats > 7){
+      alert("You can reserve only 7 seats at a time");
+      return;
     }
+    setNumSeatsToReserve(numSeats);
   };
 
   return (
@@ -50,7 +56,7 @@ function App() {
       <h1>Book Your Ticket</h1>
       <div className='inputClass'>
         <label htmlFor="numSeats">Number of Seats to Reserve:</label>
-        <input type="number" id="numSeats" name="numSeats" min="1" max="7" value={numSeatsToReserve} onChange={handleChangeNumSeats} />
+        <input type="number" id="numSeats" name="numSeats" value={numSeatsToReserve} onChange={handleChangeNumSeats} />
       </div>
       <button onClick={reserveSeats}>Reserve Seats</button>
       <div className="seats">
