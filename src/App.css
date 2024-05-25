@@ -11,6 +11,11 @@
   font-family:'Poppins', sans-serif;
 }
 
+.coach h1{
+  margin: 0;
+  padding: 0;
+}
+
 .coach button{
   padding: 10px 15px;
   background-color: #4CAF50;
@@ -56,3 +61,58 @@
   background-color: #f8baba; 
 }
 
+
+@media screen and (max-width: 550px) {
+  .coach {
+    max-width: 400px;
+    gap: 10px;
+  }
+
+  .coach h1{
+    margin: 0;
+    padding: 0;
+  }
+
+  .inputClass input{
+    width: 60px;
+  }
+
+  .seat {
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+    line-height: 30px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .coach {
+    max-width: 250px;
+    gap: 7px;
+  }
+
+  .coach h1{
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+  }
+
+  .inputClass{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .inputClass input{
+    width: 70px;
+  }
+
+  .seat {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    line-height: 20px;
+    font-size: 10px;
+  }
+}
